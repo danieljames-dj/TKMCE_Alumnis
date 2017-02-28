@@ -21,7 +21,7 @@ con.connect(function(err){
 });
 app.post('/signin',function(req,res) {
 	console.log(req.body);
-	con.query('select * from users where name=\''+req.body.email+'\' and id='+req.body.password,function(err,rows){
+	con.query('select * from users where name=\''+req.body.email+'\' and password='+req.body.password,function(err,rows){
 		if (rows) {
 			var token = jwt.sign(rows[0], app.get('superSecret'), {
 	          expiresIn: 1440
@@ -37,7 +37,14 @@ app.post('/signin',function(req,res) {
 });
 app.post('/register',function(req,res) {
 	console.log(req.body);
-	con.query('insert into users values (\''+req.body.email+'\',\''+req.body.password+'\')',function(err,rows){});
+	con.query("update users set" +
+		" name_alt = " + "'" + req.body.altName + "'," +
+		" email = " + "'" + req.body.email + "'," +
+		" address_new = " + "'" + req.body.address + "'," +
+		" location_current = " + "'" + req.body.location + "'," +
+		" contact = " + "'" + req.body.contact + "'," +
+		" intro = " + "'" + req.body.introduction + "'," +
+		" password = " + "'" + req.body.password + "'",function(err,rows){});
 });
 app.post('/tokenCheck',function(req,res) {
 	jwt.verify(req.body.token, app.get('superSecret'), function(err, decoded) {
