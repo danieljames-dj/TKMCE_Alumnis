@@ -1,3 +1,7 @@
+var x = localStorage.getItem("tkmce_token");
+if (x != -1 && x != null) {
+    window.location.href = "./index.html";
+}
 document.getElementById("branch").onchange = function() {
 	var branch = document.getElementById("branch").value;
 	if (branch == 'Electrical')
