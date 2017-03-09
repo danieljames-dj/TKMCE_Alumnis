@@ -14,3 +14,10 @@ intro               varchar(500),
 password            varchar(30),
 status              int(11)
 );
+
+insert into users (name, branch) values ('M1', 'Mechanical');
+insert into users (name, branch) values ('M2', 'Mechanical');
+insert into users (name, branch) values ('E1', 'Electrical');
+insert into users (name, branch) values ('E2', 'Electrical');
+insert into users (name, branch) values ('C1', 'Civil');
+insert into users (name, branch) values ('C2', 'Civil');
