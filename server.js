@@ -22,7 +22,9 @@ con.connect(function(err){
 app.post('/signin',function(req,res) {
 	console.log(req.body);
 	con.query('select * from users where email=\''+req.body.email+'\' and password=\''+req.body.password+'\'',function(err,rows){
-		if (rows) {
+		console.log(rows);
+		if (!err && rows.length > 0) {
+			console.log("MMMM");
 			var token = jwt.sign(rows[0], app.get('superSecret'), {
 	          expiresIn: 1440
 	        });
@@ -31,12 +33,15 @@ app.post('/signin',function(req,res) {
 	          message: 'Enjoy your token!',
 	          token: token
 	        });
-		} else
+		} else {
+			console.log("LLLL");
 			res.json({
 	          success: false,
 	          message: 'Invalid credentials',
 	          token: null
-	        });	});
+	        });
+		}
+	});
 });
 app.post('/register',function(req,res) {
 	console.log(req.body);
@@ -49,6 +54,9 @@ app.post('/register',function(req,res) {
 		" intro = " + "'" + req.body.introduction + "'," +
 		" password = " + "'" + req.body.password + "'" +
 		" where name = '" + req.body.name + "'",function(err,rows){});
+	res.json({
+		success: true
+	});
 });
 app.post('/tokenCheck',function(req,res) {
 	jwt.verify(req.body.token, app.get('superSecret'), function(err, decoded) {

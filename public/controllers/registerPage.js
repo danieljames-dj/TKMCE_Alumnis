@@ -5,11 +5,11 @@ if (x != -1 && x != null) {
 document.getElementById("branch").onchange = function() {
 	var branch = document.getElementById("branch").value;
 	if (branch == 'Electrical')
-		document.getElementById("name").innerHTML = "<option selected disabled>Select Name</option>" + "<option>Electrical</option>\n" + "<option>Electrical</option>\n";
+		document.getElementById("name").innerHTML = "<option selected disabled>Select Name</option>" + "<option>E1</option>\n" + "<option>E2</option>\n";
 	else if (branch == 'Mechanical')
-		document.getElementById("name").innerHTML = "<option selected disabled>Select Name</option>" + "<option>Mechanical</option>\n" + "<option>Electrical</option>\n";
+		document.getElementById("name").innerHTML = "<option selected disabled>Select Name</option>" + "<option>M1</option>\n" + "<option>M2</option>\n";
 	else if (branch == 'Civil')
-		document.getElementById("name").innerHTML = "<option selected disabled>Select Name</option>" + "<option>Civil</option>\n" + "<option>Electrical</option>\n";
+		document.getElementById("name").innerHTML = "<option selected disabled>Select Name</option>" + "<option>C1</option>\n" + "<option>C2</option>\n";
 }
 
 document.getElementById('register').onclick = function() {
@@ -21,6 +21,13 @@ document.getElementById('register').onclick = function() {
     xhttp.open("POST", "http://localhost:8081/register", true);
     xhttp.onload = function() {
         console.log(xhttp.responseText);
+        var json = JSON.parse(xhttp.responseText);
+        if (json.success == true) {
+            window.location.href = "./login.html"
+        } else {
+            console.log("LOL");
+            alert("Unsuccessful");
+        }
     }
     xhttp.setRequestHeader('Content-Type', 'application/json');
     xhttp.send('{'
