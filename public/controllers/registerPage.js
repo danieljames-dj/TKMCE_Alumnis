@@ -18,7 +18,7 @@ document.getElementById('register').onclick = function() {
 		return;
 	}
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "http://localhost:8081/register", true);
+    xhttp.open("POST", "/register", true);
     xhttp.onload = function() {
         console.log(xhttp.responseText);
         var json = JSON.parse(xhttp.responseText);

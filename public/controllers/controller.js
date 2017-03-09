@@ -5,7 +5,7 @@ if (x != -1 && x != null) {
 }
 document.getElementById('signin').onclick = function() {
 	var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "http://localhost:8081/signin", true);
+    xhttp.open("POST", "/signin", true);
     xhttp.onload = function() {
     	var json = JSON.parse(xhttp.responseText);
         if (json.success == true) {
