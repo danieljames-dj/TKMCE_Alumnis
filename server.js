@@ -1,8 +1,10 @@
 var express = require('express');
 var app = express();
 var bodyparser = require('body-parser');
+// var fileUpload = require('express-fileupload');
 app.use(express.static('public'));
 app.use(bodyparser.json());
+// app.use(fileUpload());
 var mysql = require("mysql");
 var jwt = require('jsonwebtoken');
 app.set('superSecret', 'tkmce87');

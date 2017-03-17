@@ -40,5 +40,6 @@ document.getElementById('register').onclick = function() {
     	+ '"address":"' + document.getElementById('form-address').value + '",'
     	+ '"location":"' + document.getElementById('form-location').value + '",'
     	+ '"introduction":"' + document.getElementById('form-intro').value + '"'
+        // + '"introduction":"' + document.getElementById('form-intro').value + '"'
     	+ '}');
 }
