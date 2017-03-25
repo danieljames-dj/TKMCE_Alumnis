@@ -33,6 +33,19 @@
 
     <body>
 
+        <script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyCRKxj34MiRQi7e9FScfihBSad5UtZJUSI",
+            authDomain: "alumni-db-6e39d.firebaseapp.com",
+            databaseURL: "https://alumni-db-6e39d.firebaseio.com",
+            storageBucket: "alumni-db-6e39d.appspot.com",
+            messagingSenderId: "137713721954"
+          };
+          firebase.initializeApp(config);
+        </script>
+
         <!-- Top content -->
         <div class="top-content">
         	
@@ -48,12 +61,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-sm-6 col-sm-offset-3 form-box">
                         	<div class="form-top">
                         		<div class="form-top-left">
                         			<h3>Login to our site</h3>
-                            		<p>Enter your email ID and password to log on or <a href="./register.html">CLICK HERE</a> to register</p>
                         		</div>
                         		<div class="form-top-right">
                         			<i class="fa fa-lock"></i>
@@ -73,7 +85,8 @@
 			                    </form>
 		                    </div>
                         </div>
-                    </div>
+                    </div> -->
+                    <button id="signin" class="btn">SIGN IN WITH GOOGLE</button>
                     <div class="row">Time remaining</div>
                     <div class="row">
                         <div id="countdown"></div>

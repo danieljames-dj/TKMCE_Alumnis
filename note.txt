@@ -1,0 +1,8 @@
+1. Login page
+2. Register page or Edit page
+3. Home page
+4. Profile page
+5. Admin page
+
+Things to add later:
+1. Login page - loading animation

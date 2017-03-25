@@ -12,7 +12,8 @@ var con = mysql.createConnection({
   host: "localhost",
   user: "dany",
   password: "emmaus",
-  database: "node"
+  database: "node",
+  multipleStatements: true
 });
 con.connect(function(err){
   if(err){
@@ -21,30 +22,29 @@ con.connect(function(err){
   }
   console.log('Database Connection established');
 });
+
 app.post('/signin',function(req,res) {
 	console.log(req.body);
-	con.query('select * from users where email=\''+req.body.email+'\' and password=\''+req.body.password+'\'',function(err,rows){
+	con.query('select * from users where gEmail=\''+req.body.gEmail+'\'',function(err,rows){
 		console.log(rows);
 		if (!err && rows.length > 0) {
-			console.log("MMMM");
-			var token = jwt.sign(rows[0], app.get('superSecret'), {
-	          expiresIn: 1440
-	        });
-	        res.json({
-	          success: true,
-	          message: 'Enjoy your token!',
-	          token: token
-	        });
+			if (rows[0].status == 1) {
+				res.json({
+					success: true
+				});
+			} else {
+				res.json({
+					success: false
+				});
+			}
 		} else {
-			console.log("LLLL");
 			res.json({
-	          success: false,
-	          message: 'Invalid credentials',
-	          token: null
-	        });
+				success: false
+			});
 		}
 	});
 });
+
 app.post('/register',function(req,res) {
 	console.log(req.body);
 	con.query("update users set" +
@@ -60,14 +60,37 @@ app.post('/register',function(req,res) {
 		success: true
 	});
 });
-app.post('/tokenCheck',function(req,res) {
-	jwt.verify(req.body.token, app.get('superSecret'), function(err, decoded) {
-		if (err)
-			return res.json({success:true});
-		else
-			return res.json({success:false});
+
+app.post('/getBranchName',function(req,res) {
+	var curUser = null;
+	console.log(req.body);
+	con.query('select * from users where gEmail=\''+req.body.gEmail+'\'',function(err,rows){
+		console.log(rows);
+		if (!err && rows.length > 0) {
+			curUser = rows[0];
+		}
+		con.query('select branch,name from users where status = 0 order by branch',function(err,rowsNew){
+			console.log(rowsNew);
+			if (!err) {
+				res.json({
+					curUser: curUser,
+					rows: rowsNew
+				});
+			}
+		});
 	});
 });
+
+app.post('/reset',function(req,res) {
+	console.log(req.body.query);
+	con.query("delete from users;",function(err,rows){});
+	con.query(req.body.query,function(err,rows){
+		console.log(err);
+		console.log(rows);
+	});
+	con.query("update users set status = 0;",function(err,rows){});
+});
+
 app.listen(8081, function() {
 	console.log("Server listening to port 8081");
 });

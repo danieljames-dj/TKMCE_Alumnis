@@ -33,6 +33,19 @@
 
     <body>
 
+        <script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyCRKxj34MiRQi7e9FScfihBSad5UtZJUSI",
+            authDomain: "alumni-db-6e39d.firebaseapp.com",
+            databaseURL: "https://alumni-db-6e39d.firebaseio.com",
+            storageBucket: "alumni-db-6e39d.appspot.com",
+            messagingSenderId: "137713721954"
+          };
+          firebase.initializeApp(config);
+        </script>
+
         <!-- Top content -->
         <div class="top-content">
         	
@@ -52,8 +65,8 @@
                         <div class="col-sm-6 col-sm-offset-3 form-box">
                         	<div class="form-top">
                         		<div class="form-top-left">
-                        			<h3>Registration</h3>
-                            		<p>Please fill the details or <a href="./login.html">CLICK HERE</a> to login</p>
+                        			<h3>Edit Profile</h3>
+                            		<p>You have to be approved by admin to view the home page. If you have not updated your profile, please update it soon here as admin will approve only if your profile is updated.</p>
                         		</div>
                         		<div class="form-top-right">
                         			<i class="fa fa-lock"></i>
@@ -61,36 +74,24 @@
                             </div>
                             <div class="form-bottom">
 			                    <form role="form" onsubmit="return false" class="login-form">
-                                    <div class="form-group">
+                                    <div class="form-group" id="branchForm">
                                         <label for="form-username">Branch</label>
                                         <select id="branch" class="form-control">
-                                            <option selected disabled>Select Branch</option>
-                                            <option>Electrical</option>
-                                            <option>Mechanical</option>
-                                            <option>Civil</option>
                                         </select>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" id="nameForm">
                                         <label for="form-username">Name</label>
                                         <select class="form-control" id="name">
                                             <option selected disabled>Select Name</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="form-username">Email</label>
-                                        <input type="text" name="form-username" class="form-username form-control" id="form-email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="form-username">Password</label>
-                                        <input type="password" name="form-username" class="form-username form-control" id="form-password">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="form-username">Confirm Password</label>
-                                        <input type="password" name="form-username" class="form-username form-control" id="form-password1">
-                                    </div>
-                                    <div class="form-group">
                                         <label for="form-username">Alternate Name</label>
                                         <input type="text" name="form-username" class="form-username form-control" id="form-altName">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="form-username">Email</label>
+                                        <input type="text" name="form-username" class="form-username form-control" id="form-email">
                                     </div>
                                     <div class="form-group">
                                         <label for="form-username">Contact Number</label>
@@ -124,7 +125,8 @@
                                         <label for="uploadFam2">Family Pic 2</label>
                                         <input type="file" name="familyPic2" id="familyPic1" />
                                     </div>
-                                    <button id="register" class="btn">Register</button>
+                                    <button id="register" class="btn">SAVE AND SIGN OUT</button>
+                                    <button id="signout" style="margin-top:0.5cm" class="btn">DON'T SAVE AND SIGN OUT</button>
                                 </form>
 		                    </div>
                         </div>

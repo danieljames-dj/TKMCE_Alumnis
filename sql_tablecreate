@@ -1,18 +1,19 @@
 create table users (
+gEmail              varchar(30),
+gName               varchar(30),
+branch              varchar(30),
 name                varchar(30),
 name_alt            varchar(30),
 email               varchar(30),
+contact             varchar(12),
 address_old         varchar(200),
 address_new         varchar(200),
-branch              varchar(30),
 location_current    varchar(30),
-contact             varchar(12),
+intro               varchar(500),
 old_face            varchar(10),
 new_face            varchar(10),
 familyPic1          varchar(10),
 familyPic2          varchar(10),
-intro               varchar(500),
-password            varchar(30),
 status              int(11)
 );
 
