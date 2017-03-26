@@ -6,3 +6,14 @@
 
 Things to add later:
 1. Login page - loading animation
+2. Register page -
+	a. intro paragraph not supporting
+	b. freeze first 2 fields if already approved
+	c. update current values if already entered
+	d. file uploads
+3. Profile page -
+	a. Eligibility check
+	b. Details show on page
+4. Admin page -
+	a. Activate approve and delete
+5. Home page - later

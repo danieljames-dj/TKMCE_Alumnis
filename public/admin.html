@@ -35,26 +35,16 @@
 <div class="container">
   <h2>Approvals pending</h2>
   <table class="table">
-    <tbody>
-      <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-        <td><button onclick="show(1)" type="button" class="btn btn-default">Show Details</button></td>
-      </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-        <td><button onclick="show(2)" type="button" class="btn btn-default">Show Details</button></td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-        <td><button onclick="show(3)" type="button" class="btn btn-default">Show Details</button></td>
-      </tr>
-    </tbody>
+    <thead>
+        <td>Name (login)</td>
+        <td>Email (login)</td>
+        <td>Name (reg)</td>
+        <td>Email (reg)</td>
+        <td>Profile</td>
+        <td>Approve</td>
+        <td>Delete</td>
+    </thead>
+    <tbody id="tableBody"></tbody>
   </table>
 </div>
 <script src="/controllers/admin.js"></script>

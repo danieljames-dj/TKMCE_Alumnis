@@ -47,18 +47,24 @@ app.post('/signin',function(req,res) {
 
 app.post('/register',function(req,res) {
 	console.log(req.body);
-	con.query("update users set" +
-		" name_alt = " + "'" + req.body.altName + "'," +
-		" email = " + "'" + req.body.email + "'," +
-		" address_new = " + "'" + req.body.address + "'," +
-		" location_current = " + "'" + req.body.location + "'," +
-		" contact = " + "'" + req.body.contact + "'," +
-		" intro = " + "'" + req.body.introduction + "'," +
-		" password = " + "'" + req.body.password + "'" +
-		" where name = '" + req.body.name + "'",function(err,rows){});
-	res.json({
-		success: true
-	});
+	if (req.body.name != 'Select Name') {
+		con.query("update users set" +
+			" gName = " + "'" + req.body.gName + "'," +
+			" gEmail = " + "'" + req.body.gEmail + "'," +
+			" name_alt = " + "'" + req.body.altName + "'," +
+			" email = " + "'" + req.body.email + "'," +
+			" contact = " + "'" + req.body.contact + "'," +
+			" address_new = " + "'" + req.body.address + "'," +
+			" location_current = " + "'" + req.body.location + "'," +
+			" intro = " + "'" + req.body.introduction + "'" +
+			" where name = '" + req.body.name + "'",function(err,rows){
+				console.log(err);
+				console.log(rows);
+			});
+		res.json({
+			success: true
+		});
+	}
 });
 
 app.post('/getBranchName',function(req,res) {
@@ -78,6 +84,34 @@ app.post('/getBranchName',function(req,res) {
 				});
 			}
 		});
+	});
+});
+
+app.post('/getNonApproved',function(req,res) {
+	console.log(req.body);
+	con.query('select gName, gEmail, name, email from users where gEmail != \'NULL\' and status = 0',function(err,rows){
+		console.log(rows);
+		res.json({
+			rows: rows
+		});
+	});
+});
+
+app.post('/getUser',function(req,res) {
+	console.log(req.body);
+	con.query('select * from users where gEmail=\''+req.body.gEmail+'\'',function(err,rows){
+		console.log(rows);
+		if (!err && rows.length > 0) {
+			res.json({
+				success: true,
+				details: rows[0]
+			});
+		} else {
+			res.json({
+				success: false,
+				details: null
+			});
+		}
 	});
 });
 

@@ -1,5 +1,6 @@
-var rows, name = "";
+var rows, name = "", userDetails;
 function updateForm(user) {
+    userDetails = user;
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/getBranchName", true);
     xhttp.onload = function() {
@@ -53,6 +54,39 @@ document.getElementById("branch").onchange = function() {
             document.getElementById("name").innerHTML += '<option>' + rows[i].name + '</option>'
         }
     }
+}
+
+document.getElementById('register').onclick = function() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "/register", true);
+    xhttp.onload = function() {
+        firebase.auth().signOut().then(function() {
+          // Sign-out successful.
+        }).catch(function(error) {
+          // An error happened.
+        });
+    }
+    xhttp.setRequestHeader('Content-Type', 'application/json');
+    xhttp.send('{'
+     + '"gName":"' + userDetails.displayName + '",'
+     + '"gEmail":"' + userDetails.email + '",'
+     + '"branch":"' + document.getElementById('branch').value + '",'
+     + '"name":"' + document.getElementById('name').value + '",'
+     + '"altName":"' + document.getElementById('form-altName').value + '",'
+     + '"email":"' + document.getElementById('form-email').value + '",'
+     + '"contact":"' + document.getElementById('form-cont').value + '",'
+     + '"address":"' + document.getElementById('form-address').value + '",'
+     + '"location":"' + document.getElementById('form-location').value + '",'
+     + '"introduction":"' + document.getElementById('form-intro').value + '"'
+     + '}');
+}
+
+document.getElementById('signout').onclick = function() {
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+    }).catch(function(error) {
+      // An error happened.
+    });
 }
 
 // document.getElementById('register').onclick = function() {
