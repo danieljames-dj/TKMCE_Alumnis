@@ -15,6 +15,26 @@ function updateProfile () {
 	xhttp.onload = function() {
 	    var json = JSON.parse(xhttp.responseText);
 	    console.log(json);
+	    if (json.success) {
+	    	document.getElementById('profileContents').innerHTML += `
+	    						<h5>Branch</h5>
+                                <p>` + json.details.branch + `</p>
+                                <h5>Name</h5>
+                                <p>` + json.details.name + `</p>
+                                <h5>Alternate Name</h5>
+                                <p>` + json.details.name_alt + `</p>
+                                <h5>Email</h5>
+                                <p>` + json.details.email + `</p>
+                                <h5>Contact Number</h5>
+                                <p>` + json.details.contact + `</p>
+                                <h5>Current Address</h5>
+                                <p>` + json.details.address_new + `</p>
+                                <h5>Current Location</h5>
+                                <p>` + json.details.location_current + `</p>
+                                <h5>Introduction</h5>
+                                <p>` + json.details.intro + `</p>
+                            `
+	    }
 	}
 	xhttp.setRequestHeader('Content-Type', 'application/json');
 	xhttp.send("{\"gEmail\":\""+curEmail+"\"}");

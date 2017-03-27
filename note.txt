@@ -10,10 +10,12 @@ Things to add later:
 	a. intro paragraph not supporting
 	b. freeze first 2 fields if already approved
 	c. update current values if already entered
-	d. file uploads
+	d. file uploads - size verification, display image
 3. Profile page -
 	a. Eligibility check
-	b. Details show on page
+	b. Rememberence Details show on page
+	c. Do something for blank data
+	d. Show photos
 4. Admin page -
 	a. Activate approve and delete
 5. Home page - later
