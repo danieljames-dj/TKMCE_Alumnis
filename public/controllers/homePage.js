@@ -1,30 +1,53 @@
 var active = "all";
-var x = localStorage.getItem("tkmce_token");
-if (x == -1 || x == null) {
-	window.location.href = "./login.html";
-} else {
-	// var xhttp = new XMLHttpRequest();
- //    xhttp.open("POST", "http://localhost:8081/tokenCheck", true);
- //    xhttp.onload = function() {
- //    	var json = JSON.parse(xhttp.responseText);
- //        console.log(json.message);
- //        localstorage.setItem
- //    }
- //    xhttp.setRequestHeader('Content-Type', 'application/json');
- //    xhttp.send("{\"token\":\""+x+"\"}");
+var regdList;
+
+var display = function() {
+	document.getElementById('people').innerHTML = "";
+	for (var i in regdList) {
+		if (!regdList[i].gEmail) regdList[i].gEmail = "a@a";
+		if (active != 'all' && active != regdList[i].branch) continue;
+    	console.log(regdList[i]);
+    	var image = `<img class="img-responsive" src="http://placehold.it/400x300" alt="">`;
+    	if (regdList[i].new_face) {
+    		//
+    	}
+		document.getElementById('people').innerHTML += `
+			<div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="./profile.html?gEmail=` + regdList[i].gEmail + `"> ` + image + `
+                </a>
+                <p>` + regdList[i].name + `</p>
+            </div>
+		`;
+    }
 }
+
+var provider = new firebase.auth.GoogleAuthProvider();
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        console.log("Hi");
+        var xhttp = new XMLHttpRequest();
+		xhttp.open("POST", "/getRegdList", true);
+		xhttp.onload = function() {
+			var json = JSON.parse(xhttp.responseText);
+		    console.log(json);
+		    regdList = json.details;
+		    display();
+		}
+		xhttp.setRequestHeader('Content-Type', 'application/json');
+		xhttp.send();
+    } else {
+        window.location.href = "./login.html"
+    }
+}, function(error) {
+    console.log(error);
+});
+
 document.getElementById('logout').onclick = function() {
-	localStorage.setItem("tkmce_token",-1);
-	window.location.href = "./index.html";
-	// var xhttp = new XMLHttpRequest();
- //    xhttp.open("POST", "http://localhost:8081/signin", true);
- //    xhttp.onload = function() {
- //    	var json = JSON.parse(xhttp.responseText);
- //        console.log(json.message);
- //        //localstorage.setItem
- //    }
- //    xhttp.setRequestHeader('Content-Type', 'application/json');
- //    xhttp.send("{\"email\":\""+document.getElementById('form-username').value+"\",\"password\":\""+document.getElementById('form-password').value+"\"}");
+	firebase.auth().signOut().then(function() {
+      window.location.href = "./login.html"
+    }).catch(function(error) {
+      // An error happened.
+    });
 }
 
 function navHelper(branch) {
@@ -33,5 +56,6 @@ function navHelper(branch) {
 		document.getElementById(active.valueOf()).className = "";
 		document.getElementById(branch.valueOf()).className = "active";
 		active = branch;
+		display();
 	}
 }

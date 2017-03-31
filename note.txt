@@ -17,5 +17,19 @@ Things to add later:
 	c. Do something for blank data
 	d. Show photos
 4. Admin page -
-	a. Activate approve and delete
-5. Home page - later
+	a. Activate delete
+5. Home page -
+	a. Reject a person who is not approved
+	b. Update image for the person
+	c. Loading animation
+6. Server -
+	a. Allow same person to get multiple data to avoid overriding
+
+
+Bugs:
+	1. In login page, there is a loading in the beginning. At that time, animation should come, but it's not yet enabled.
+	2. In Admin page, delete option is not enabled.
+	3. Home page can be accessed by anyone right now. Later, it'll be restricted to only those who have been approved.
+	4. The image is not currently present in home page. Space is there, but will be added later.
+	5. In home page, there is a loading in the beginning. At that time, animation should come, but it's not yet enabled.
+	6. 

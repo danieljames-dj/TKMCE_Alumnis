@@ -154,7 +154,7 @@ document.getElementById('register').onclick = function() {
     // };
     // console.log("READER");
     // reader.readAsText(file[0]);
-    
+    // send();
 }
 
 document.getElementById('signout').onclick = function() {

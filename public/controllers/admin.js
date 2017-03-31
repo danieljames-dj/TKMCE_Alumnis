@@ -1,12 +1,22 @@
-function show(gEmail) {
+function show(gEmail, name) {
 	window.location.href = "./profile.html?gEmail=" + gEmail;
 }
 
-function approve(gEmail) {
-	console.log(gEmail);
+function approve(gEmail, name) {
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("POST", "/approve", true);
+	xhttp.onload = function() {
+		console.log("HI");
+	    window.location.href = "./admin.html";
+	}
+	xhttp.setRequestHeader('Content-Type', 'application/json');
+	xhttp.send('{'
+               + '"gEmail":"' + gEmail + '",'
+               + '"name":"' + name + '"'
+               + '}');
 }
 
-function deleteUser(gEmail) {
+function deleteUser(gEmail, name) {
 	console.log(gEmail);
 }
 
@@ -22,9 +32,9 @@ xhttp.onload = function() {
 	        <td>` + json.rows[i].gEmail + `</td>
 	        <td>` + json.rows[i].name + `</td>
 	        <td>` + json.rows[i].email + `</td>
-	        <td><button onclick="show('` + json.rows[i].gEmail + `')" type="button" class="btn btn-default">Show Details</button></td>
-	        <td><button onclick="approve('` + json.rows[i].gEmail + `')" type="button" class="btn btn-default">Approve</button></td>
-	        <td><button onclick="deleteUser('` + json.rows[i].gEmail + `')" type="button" class="btn btn-default">Delete</button></td>
+	        <td><button onclick="show('` + json.rows[i].gEmail + `','` + json.rows[i].name + `')" type="button" class="btn btn-default">Show Details</button></td>
+	        <td><button onclick="approve('` + json.rows[i].gEmail + `','` + json.rows[i].name + `')" type="button" class="btn btn-default">Approve</button></td>
+	        <td><button onclick="deleteUser('` + json.rows[i].gEmail + `','` + json.rows[i].name + `')" type="button" class="btn btn-default">Delete</button></td>
 	      </tr>
   `
     }

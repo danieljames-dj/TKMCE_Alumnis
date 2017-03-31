@@ -47,7 +47,7 @@ app.post('/signin',function(req,res) {
 });
 
 app.post('/register',function(req,res) {
-	// console.log(req.body);
+	console.log(req.body);
 	var count = 0, writeStream, fileName = [];
 	var getCount = function(err, data) {
 		count = parseInt(data);
@@ -164,6 +164,24 @@ app.post('/getUser',function(req,res) {
 	});
 });
 
+app.post('/getRegdList',function(req,res) {
+	console.log(req.body);
+	con.query('select * from users where status=1',function(err,rows){
+		console.log(rows);
+		if (!err && rows.length > 0) {
+			res.json({
+				success: true,
+				details: rows
+			});
+		} else {
+			res.json({
+				success: false,
+				details: null
+			});
+		}
+	});
+});
+
 app.post('/reset',function(req,res) {
 	console.log(req.body.query);
 	con.query("delete from users;",function(err,rows){});
@@ -175,7 +193,15 @@ app.post('/reset',function(req,res) {
 });
 
 app.post('/approve',function(req,res) {
-	console.log(req.body.query);
+	console.log(req.body);
+	con.query("update users set" +
+		" status = 1 where name = '" + req.body.name + "' and gEmail = '" + req.body.gEmail + "'",function(err,rows){
+			console.log(err);
+			console.log(rows);
+		});
+	res.json({
+		success: true
+	});
 	// con.query("delete from users;",function(err,rows){});
 	// con.query(req.body.query,function(err,rows){
 	// 	console.log(err);
@@ -185,7 +211,7 @@ app.post('/approve',function(req,res) {
 });
 
 app.post('/delete',function(req,res) {
-	console.log(req.body.query);
+	console.log(req.body);
 	// con.query("delete from users;",function(err,rows){});
 	// con.query(req.body.query,function(err,rows){
 	// 	console.log(err);

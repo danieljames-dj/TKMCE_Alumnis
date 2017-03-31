@@ -32,6 +32,18 @@
     </head>
 
     <body>
+        <script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyCRKxj34MiRQi7e9FScfihBSad5UtZJUSI",
+            authDomain: "alumni-db-6e39d.firebaseapp.com",
+            databaseURL: "https://alumni-db-6e39d.firebaseio.com",
+            storageBucket: "alumni-db-6e39d.appspot.com",
+            messagingSenderId: "137713721954"
+          };
+          firebase.initializeApp(config);
+        </script>
         <!-- Top content -->
         <div class="top-content">
             
@@ -63,68 +75,14 @@
               <div class="container-fluid">
                 <ul class="nav navbar-nav">
                   <li id="all" class="active" onclick="navHelper('all')"><a href="#table">All</a></li>
-                  <li id="mech" onclick="navHelper('mech')"><a href="#table">Mechanical</a></li>
-                  <li id="civ" onclick="navHelper('civ')"><a href="#table">Civil</a></li>
-                  <li id="eee" onclick="navHelper('eee')"><a href="#table">Electrical</a></li>
+                  <li id="Mechanical" onclick="navHelper('Mechanical')"><a href="#table">Mechanical</a></li>
+                  <li id="Civil" onclick="navHelper('Civil')"><a href="#table">Civil</a></li>
+                  <li id="Electrical" onclick="navHelper('Electrical')"><a href="#table">Electrical</a></li>
                 </ul>
               </div>
             </nav>
 
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
+            <div id="people"></div>
         </div>
 
     </div>
@@ -160,7 +118,7 @@
 
 
         <!-- Javascript -->
-        //
+        <script src="assets/js/jquery-1.11.1.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/jquery.backstretch.min.js"></script>
         <script src="assets/js/scripts.js"></script>
