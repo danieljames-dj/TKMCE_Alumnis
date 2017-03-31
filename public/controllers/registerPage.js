@@ -60,11 +60,11 @@ document.getElementById('register').onclick = function() {
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/register", true);
     xhttp.onload = function() {
-        // firebase.auth().signOut().then(function() {
-        //   // Sign-out successful.
-        // }).catch(function(error) {
-        //   // An error happened.
-        // });
+        firebase.auth().signOut().then(function() {
+          // Sign-out successful.
+        }).catch(function(error) {
+          // An error happened.
+        });
     }
     var file = [], newFiles = [];
     xhttp.setRequestHeader('Content-Type', 'application/json');
@@ -115,6 +115,7 @@ document.getElementById('register').onclick = function() {
       if (file[i])
         j++;
     }
+    if (j == 0) send();
     if (file[0]) {
       var fileReader = new FileReader();
       fileReader.onload = function(fileLoadedEvent, x) {
