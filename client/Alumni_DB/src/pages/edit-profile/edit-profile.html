@@ -1,0 +1,101 @@
+<!--
+  Generated template for the EditProfile page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+  	<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Edit Profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<ion-list>
+
+		<ion-item>
+		  <ion-label floating>Branch</ion-label>
+		  <ion-select [(ngModel)] = "values.details.branch">
+		  	<ion-option *ngFor="let key of branchList">{{key.branch}}</ion-option>
+		  </ion-select>
+	  	</ion-item>
+
+	  	<ion-item>
+		  <ion-label floating>Name</ion-label>
+		  <ion-select [(ngModel)] = "values.details.name">
+		  	<div *ngFor="let key of branchList">
+		  		<div *ngIf="values.details.branch == key.branch">
+		  			<ion-option *ngFor="let k of key.names">{{k}}</ion-option>
+		  		</div>
+		  	</div>
+		  </ion-select>
+	  	</ion-item>
+
+	  <ion-item>
+	    <ion-label floating>Alternative Name</ion-label>
+	    <ion-input type="text" [(ngModel)] = "values.details.name_alt"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label floating>Email</ion-label>
+	    <ion-input type="text" [(ngModel)] = "values.details.email"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label floating>Contact Number</ion-label>
+	    <ion-input type="text" [(ngModel)] = "values.details.contact"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label floating>Current Address</ion-label>
+	    <ion-input type="text" [(ngModel)] = "values.details.address_new"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label floating>Current Location</ion-label>
+	    <ion-input type="text" [(ngModel)] = "values.details.location_current"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label floating>Introduction</ion-label>
+	    <ion-input type="text" [(ngModel)] = "values.details.intro"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <p>Campus Face</p>
+	    <div id="img0"></div>
+    	<input type="file" accept="image/*" id="img0ip" style="visibility: visible;" (change)="readFile(this, 'img0')" />
+		<button id="img0but" style="visibility: hidden;" ion-button outline (click)="removeFile('img0');">Remove Photo</button>
+	  </ion-item>
+
+	  <ion-item>
+	    <p>New Face</p>
+	    <div id="img1"></div>
+    	<input type="file" accept="image/*" id="img1ip" style="visibility: visible;" (change)="readFile(this, 'img1')" />
+		<button id="img1but" style="visibility: hidden;" ion-button outline (click)="removeFile('img1');">Remove Photo</button>
+	  </ion-item>
+
+	  <ion-item>
+	    <p>Family Pic 1</p>
+	    <div id="img2"></div>
+    	<input type="file" accept="image/*" id="img2ip" style="visibility: visible;" (change)="readFile(this, 'img2')" />
+		<button id="img2but" style="visibility: hidden;" ion-button outline (click)="removeFile('img2');">Remove Photo</button>
+	  </ion-item>
+
+	  <ion-item>
+	    <p>Family Pic 2</p>
+	    <div id="img3"></div>
+    	<input type="file" accept="image/*" id="img3ip" style="visibility: visible;" (change)="readFile(this, 'img3')" />
+		<button id="img3but" style="visibility: hidden;" ion-button outline (click)="removeFile('img3');">Remove Photo</button>
+	  </ion-item>
+
+	</ion-list>
+
+	<button ion-button (click)="updateData();">UPDATE</button>
+</ion-content>
